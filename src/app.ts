@@ -11,13 +11,13 @@ const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:3001',
   'https://jaiminho-server.onrender.com',
-  'https://jaiiminho-client.vercel.app/',
-  'https://jaiminho-client.vercel.app/',
-  'https://jaiiminho-client-ly7t0ljzh-gustavohlmas-projects.vercel.app/'
-]
+  'https://jaiiminho-client.vercel.app',
+  'https://jaiminho-client.vercel.app',
+  'https://jaiiminho-client-ly7t0ljzh-gustavohlmas-projects.vercel.app',
+  'https://jaiminho-client-aq1e8olqp-gustavohlmas-projects.vercel.app/',
+  
+];
 
-app.use(express.json());
-app.use(router);
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -27,5 +27,10 @@ app.use(cors({
     }
   }
 }));
+
+app.options('*', cors());
+
+app.use(express.json());
+app.use(router);
 
 export default app;
