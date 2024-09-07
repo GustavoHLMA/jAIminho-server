@@ -9,6 +9,7 @@ class ChatController {
         try {
             const { message } = req.body;
             console.log('Sessão no início da requisição:', req.session);
+            //Session
             // Inicializa o userId na sessão
             req.session.userId = req.session.userId || 'defaultUser';
             // Inicializa o histórico, caso ainda não exista
