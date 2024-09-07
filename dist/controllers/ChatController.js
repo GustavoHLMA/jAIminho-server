@@ -16,7 +16,9 @@ class ChatController {
             req.session.history.push({ role: 'user', content: message });
             // Verifica se a mensagem está sendo recebida corretamente
             console.log('Mensagem recebida do frontend:', message);
-            const gptResponse = await chatService_1.default.processMessage(message);
+            // Verifica o histórico completo
+            console.log('Histórico completo:', req.session.history);
+            const gptResponse = await chatService_1.default.processMessage(req.session.history);
             // Adiciona a resposta da IA ao histórico
             req.session.history.push({ role: 'assistant', content: gptResponse });
             return res.status(200).json({ response: gptResponse });

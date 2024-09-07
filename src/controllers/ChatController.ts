@@ -18,7 +18,10 @@ class ChatController {
       // Verifica se a mensagem está sendo recebida corretamente
       console.log('Mensagem recebida do frontend:', message);
 
-      const gptResponse = await ChatService.processMessage(message);
+      // Verifica o histórico completo
+      console.log('Histórico completo:', req.session.history);
+
+      const gptResponse = await ChatService.processMessage(req.session.history);
 
       
       // Adiciona a resposta da IA ao histórico
