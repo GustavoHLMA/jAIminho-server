@@ -2,13 +2,13 @@ import axios from 'axios'; // Certifique-se de ter essa linha no topo do arquivo
 
 
 class ChatService {
-  async processMessage(message) {
+  async processMessage(history) {
     try {
       const response = await axios.post(
         'https://api.openai.com/v1/chat/completions',
         {
-          model: 'gpt-4o-mini',
-          messages: [{ role: 'user', content: message }],
+          model: 'gpt-4',
+          messages: history,
           max_tokens: 2000,
         },
         {
