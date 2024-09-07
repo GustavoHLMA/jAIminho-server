@@ -20,6 +20,13 @@ const allowedOrigins = [
 app.use(express_1.default.json());
 app.use(routes_1.default);
 app.use((0, cors_1.default)({
-    origin: allowedOrigins
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
 }));
 exports.default = app;
