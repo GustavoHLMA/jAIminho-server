@@ -82,3 +82,6 @@ No terminal, dentro da pasta do projeto, execute:
 npm run dev
 ```
 
+## Repositório do Client 💻
+- https://github.com/GustavoHLMA/jAIminho-client
+
