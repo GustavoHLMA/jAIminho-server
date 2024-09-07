@@ -57,6 +57,7 @@ Gabriella Graciano de Souza<br/>
 2. 🧑‍💻 **Utilize o CPF:** `12345678910`
 3. 🔑 **Utilize a senha:** `tangamandapio`
 4. 👉 **Clique em** `Entrar` e explore a plataforma! 🚀
+5. ⚠️ **Aviso** O deploy aind não está atualizado com a função de memória, mas se rodar o servidor locamento pelo repo da nossa API você terá acesso a essa funcionalidade
 
 ## Instalação ⬇️
 
