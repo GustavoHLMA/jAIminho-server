@@ -8,6 +8,7 @@ class ChatController {
     async sendMessage(req, res, next) {
         try {
             const { message } = req.body;
+            console.log('Sessão no início da requisição:', req.session);
             // Inicializa o userId na sessão
             req.session.userId = req.session.userId || 'defaultUser';
             // Inicializa o histórico, caso ainda não exista
@@ -17,10 +18,12 @@ class ChatController {
             // Verifica se a mensagem está sendo recebida corretamente
             console.log('Mensagem recebida do frontend:', message);
             // Verifica o histórico completo
-            console.log('Histórico completo:', req.session.history);
+            console.log('Histórico completo acumulado:', req.session.history);
             const gptResponse = await chatService_1.default.processMessage(req.session.history);
             // Adiciona a resposta da IA ao histórico
             req.session.history.push({ role: 'assistant', content: gptResponse });
+            // Verifica se a resposta foi adicionada ao histórico
+            console.log('Histórico atualizado:', req.session.history);
             return res.status(200).json({ response: gptResponse });
         }
         catch (error) {

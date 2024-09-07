@@ -27,15 +27,20 @@ app.use((0, cors_1.default)({
         else {
             callback(new Error('Not allowed by CORS'));
         }
-    }
+    },
+    credentials: true
 }));
 app.options('*', (0, cors_1.default)());
 // Configuração do express-session
 app.use((0, express_session_1.default)({
     secret: process.env.SESSION_SECRET || 'sua-chave-secreta', // Chave secreta para criptografar a sessão
     resave: false, // Evita salvar a sessão se ela não foi modificada
-    saveUninitialized: true, // Salva novas sessões não modificadas
-    cookie: { secure: false } // Ajustar para 'true' em produção, se estiver usando HTTPS
+    saveUninitialized: false, // Não salva sessões não inicializadas
+    cookie: {
+        secure: false, // Mantenha como false se estiver em desenvolvimento (sem HTTPS)
+        httpOnly: true, // Garante que o cookie seja acessível apenas pelo servidor
+        sameSite: 'lax' // Controle como o cookie é enviado nas requisições entre sites
+    } // Ajuste para 'true' em produção com HTTPS
 }));
 app.use(express_1.default.json());
 app.use(routes_1.default);
