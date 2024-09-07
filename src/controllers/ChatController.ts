@@ -6,10 +6,23 @@ class ChatController {
     try {
       const { message } = req.body;
       
+      // Inicializa o userId na sessão
+      req.session.userId = req.session.userId || 'defaultUser';
+
+      // Inicializa o histórico, caso ainda não exista
+      req.session.history = req.session.history || [];
+
+      // Adiciona a nova mensagem do usuário ao histórico
+      req.session.history.push({ role: 'user', content: message });
+      
       // Verifica se a mensagem está sendo recebida corretamente
       console.log('Mensagem recebida do frontend:', message);
 
       const gptResponse = await ChatService.processMessage(message);
+
+      
+      // Adiciona a resposta da IA ao histórico
+      req.session.history.push({ role: 'assistant', content: gptResponse });
 
       return res.status(200).json({ response: gptResponse });
     } catch (error) {

@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const routes_1 = __importDefault(require("./routes"));
 const cors_1 = __importDefault(require("cors"));
+const express_session_1 = __importDefault(require("express-session"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const allowedOrigins = [
@@ -29,6 +30,13 @@ app.use((0, cors_1.default)({
     }
 }));
 app.options('*', (0, cors_1.default)());
+// Configuração do express-session
+app.use((0, express_session_1.default)({
+    secret: process.env.SESSION_SECRET || 'sua-chave-secreta', // Chave secreta para criptografar a sessão
+    resave: false, // Evita salvar a sessão se ela não foi modificada
+    saveUninitialized: true, // Salva novas sessões não modificadas
+    cookie: { secure: false } // Ajustar para 'true' em produção, se estiver usando HTTPS
+}));
 app.use(express_1.default.json());
 app.use(routes_1.default);
 exports.default = app;
