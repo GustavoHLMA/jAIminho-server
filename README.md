@@ -64,7 +64,7 @@ Gabriella Graciano de Souza<br/>
 
 Abra o terminal e execute o seguinte comando para clonar o repositório do projeto:
 ```bash
-https://github.com/GustavoHLMA/jAIminho-server.git
+git clone https://github.com/GustavoHLMA/jAIminho-server.git
 ```
 
 ### Passo 2: Instalar Dependências
